@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfApp2.Employee.CreateContractWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2.Employee"
+        mc:Ignorable="d"
+        Title="CreateContractWindow" Height="550" Width="680" Loaded="CreateContractWindow_OnLoaded">
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="420"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Content="Фамилия" FontSize="20" Height="40"></Label>
+            <TextBox x:Name="surnameText" FontSize="20" Height="30"></TextBox>
+            <Label Content="Имя" FontSize="20" Height="40"/>
+            <TextBox x:Name="nameText" FontSize="20" Height="30"/>
+            <Label Content="Отчество" FontSize="20" Height="40"/>
+            <TextBox x:Name="secondnameText" FontSize="20" Height="30"/>
+            <Label Content="№ паспорта" FontSize="20" Height="40"/>
+            <TextBox x:Name="passportNumberText" FontSize="20" Height="30"/>
+            <Label Content="Подключаемый тариф" FontSize="20" Height="70" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+            <ComboBox x:Name="tariffsText" FontSize="18" Height="30"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="3">
+            <Label Content="Кем выдан" FontSize="20" Height="40"></Label>
+            <TextBox x:Name="issuedByText" FontSize="20" Height="30"></TextBox>
+            <Label Content="Город" FontSize="20" Height="40"></Label>
+            <TextBox x:Name="townText" FontSize="20" Height="30"></TextBox>
+            <Label Content="Улица" FontSize="20" Height="40"></Label>
+            <TextBox x:Name="streetText" FontSize="20" Height="30"></TextBox>
+            <Label Content="Номер дома" FontSize="20" Height="40"></Label>
+            <TextBox x:Name="buildingNumberText" FontSize="20" Height="30"></TextBox>
+            <Label Content="Номер телефона" FontSize="20" Height="70" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+            <TextBox x:Name="phoneNumberText" FontSize="20" Height="30"></TextBox>
+        </StackPanel>
+        <Button Height="40" Width="195" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Добавить" FontSize="18" Margin="206,0,217,35" Click="Button_Click" Grid.Column="1" Grid.Row="1"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="642" Margin="10,0,0,0"/>
+    </Grid>
+</Window>
