@@ -82,6 +82,7 @@
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase\OracleDatabaseConnection.cs" />
+    <Compile Include="DataBase\Tariffs.cs" />
     <Compile Include="Employee\CreateContractWindow.xaml.cs">
       <DependentUpon>CreateContractWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Triggers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -154,7 +159,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\12.jpg" />
+    <Resource Include="Images\fcDDKMeOyJQ.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\17.jpg" />
+    <Resource Include="Images\18.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\phone-call.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\phone.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.818.41\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.818.41\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

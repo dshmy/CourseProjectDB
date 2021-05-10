@@ -665,6 +665,16 @@ begin
     raise_application_error(-20024,'Проверьте введенный номер');
     commit;
 end;
+select * from Employees;
+
+
+create or replace PROCEDURE getTariffs(tariff out sys_refcursor)
+IS
+begin
+open tariff for select Name from TariffPlan;
+  dbms_output.enable();
+  dbms_sql.return_result(tariff);
+end getTariffs;
 
 
 create or replace procedure endCall(in_id in Contract.Id%TYPE)
@@ -684,10 +694,10 @@ begin
   select RemainderId into remid from Contract where Contract.Id=in_id;
   select Remainder.Balance into currbalance from Contract join Remainder on Contract.RemainderId=Remainder.Id where Contract.Id=in_id;
   select Remainder.Minutes into minsch from Contract join Remainder on Contract.RemainderId=Remainder.Id where Contract.Id=in_id;
-  select count(*) into callnum from Calls where Calls.ContractId=in_id and Calls.CallDuration is not null;
-  if callnum!=0 then raise iscall;
+  select count(*) into callnum from Calls where Calls.ContractId=in_id and Calls.CallDuration is null;
+  if callnum=0 then raise iscall;
   end if;
-  select CallDate into cd from Calls where Calls.ContractId=in_id;
+  select CallDate into cd from Calls where Calls.ContractId=in_id and Calls.CallDuration is null;
   callinterval:=CURRENT_TIMESTAMP-cd;
   totalmins:=EXTRACT(MINUTE FROM callinterval)+1;
   if minsch!='безлимит' then mins:=minsch;
@@ -696,7 +706,7 @@ begin
   if minsch!='безлимит' and diffmin>=0 then update Remainder set Minutes=cast(diffmin as nvarchar2(50)) where Remainder.Id=remid;
   elsif minsch!='безлимит' and diffmin<0 then update Remainder set Minutes='0', Balance=currbalance-(0.1*(-diffmin)) where Remainder.Id=remid;
   end if;
-  update Calls set CallDuration=callinterval where Calls.ContractId=in_id;
+  update Calls set CallDuration=callinterval where Calls.ContractId=in_id and CallDuration is null;
   commit;
   select Remainder.Balance into newb from Contract join Remainder on Contract.RemainderId=Remainder.Id where Contract.Id=in_id;
     if minsch!='безлимит' and currbalance>newb then debits(in_id,currbalance-newb);
@@ -765,17 +775,178 @@ enabled => true
 );
 end;
 
-select*from Debit;
+create or replace procedure getTar(curs out sys_refcursor)
+is
+begin
+open curs for select Name, Price from TariffPlan;
+end;
 
-select * from Remainder join Contract on Remainder.Id=Contract.RemainderId join TariffPlan 
-                                        on Contract.TariffPlanId=TariffPlan.Id;
-select * from Calls where Calls.ContractId=41 and Calls.CallDuration is not null;
-select*from Client;
-select* from Calls;
+create or replace procedure getEmployees(curs out sys_refcursor)
+is
+begin
+open curs for select Surname, Name, SecondName, Position from Employees;
+end;
 
-select * from TariffPlan;
+delete from Debit where amount=1;
 
-select TariffPlan.Name, TariffPlan.Price, Services.Minutes, Services.SMS, Services.MMS, Services.Megabytes
-from TariffPlan
-join Services on Services.Id=TariffPlan.ServiceId;
-select Contract.PhoneNumber,Remainder.Balance, Remainder.Minutes, Remainder.SMS, Remainder.MMS, Remainder.Megabytes from Contract join Remainder on Contract.RemainderId=Remainder.Id;
+SET SERVEROUTPUT ON;
+
+---------------XML EXPORT/IMPORT
+CREATE OR REPLACE DIRECTORY UTLDATA AS 'C:/XML';
+DROP DIRECTORY UTLDATA;
+
+CREATE OR REPLACE PACKAGE XML_PACKAGE IS
+  PROCEDURE EXPORT_SERVICES_TO_XML;
+  PROCEDURE IMPORT_SERVICES_FROM_XML;
+END XML_PACKAGE;
+
+CREATE OR REPLACE PACKAGE BODY XML_PACKAGE IS
+PROCEDURE EXPORT_SERVICES_TO_XML
+IS
+  DOC  DBMS_XMLDOM.DOMDocument;
+  XDATA  XMLTYPE;
+  CURSOR XMLCUR IS
+    SELECT XMLELEMENT("SERVICES",
+      XMLAttributes('http://www.w3.org/2001/XMLSchema' AS "xmlns:xsi",
+      'http://www.oracle.com/Employee.xsd' AS "xsi:nonamespaceSchemaLocation"),
+      XMLAGG(XMLELEMENT("SERVICES",
+        XMLELEMENT("ID",SER.ID),
+        XMLELEMENT("MINUTES",SER.MINUTES),
+        XMLELEMENT("SMS",SER.SMS),
+        XMLELEMENT("MMS",SER.MMS),
+        XMLELEMENT("MEGABYTES",SER.MEGABYTES)
+      ))
+) FROM SERVICES SER;
+BEGIN
+  OPEN XMLCUR;
+    LOOP
+      FETCH XMLCUR INTO XDATA;
+    EXIT WHEN XMLCUR%NOTFOUND;
+    END LOOP;
+  CLOSE XMLCUR;
+  DOC := DBMS_XMLDOM.NewDOMDocument(XDATA);
+  DBMS_XMLDOM.WRITETOFILE(DOC, 'UTLDATA/services.xml');
+END EXPORT_SERVICES_TO_XML;
+
+PROCEDURE IMPORT_SERVICES_FROM_XML
+IS
+  L_CLOB CLOB;
+  L_BFILE  BFILE := BFILENAME('UTLDATA', 'services.xml');
+
+  L_DEST_OFFSET   INTEGER := 1;
+  L_SRC_OFFSET    INTEGER := 1;
+  L_BFILE_CSID    NUMBER  := 0;
+  L_LANG_CONTEXT  INTEGER := 0;
+  L_WARNING       INTEGER := 0;
+
+  P                DBMS_XMLPARSER.PARSER;
+  V_DOC            DBMS_XMLDOM.DOMDOCUMENT;
+  V_ROOT_ELEMENT   DBMS_XMLDOM.DOMELEMENT;
+  V_CHILD_NODES    DBMS_XMLDOM.DOMNODELIST;
+  V_CURRENT_NODE   DBMS_XMLDOM.DOMNODE;
+
+  SER SERVICES%ROWTYPE;
+BEGIN
+  DBMS_LOB.CREATETEMPORARY (L_CLOB, TRUE);
+  DBMS_LOB.FILEOPEN(L_BFILE, DBMS_LOB.FILE_READONLY);
+
+  DBMS_LOB.LOADCLOBFROMFILE (DEST_LOB => L_CLOB, SRC_BFILE => L_BFILE, AMOUNT => DBMS_LOB.LOBMAXSIZE,
+    DEST_OFFSET => L_DEST_OFFSET, SRC_OFFSET => L_SRC_OFFSET, BFILE_CSID => L_BFILE_CSID,
+    LANG_CONTEXT => L_LANG_CONTEXT, WARNING => L_WARNING);
+  DBMS_LOB.FILECLOSE(L_BFILE);
+  COMMIT;
+
+   P := DBMS_XMLPARSER.NEWPARSER;
+
+   DBMS_XMLPARSER.PARSECLOB(P,L_CLOB);
+
+   V_DOC := DBMS_XMLPARSER.GETDOCUMENT(P);
+
+   V_ROOT_ELEMENT := DBMS_XMLDOM.Getdocumentelement(v_Doc);
+
+   V_CHILD_NODES := DBMS_XMLDOM.GETCHILDRENBYTAGNAME(V_ROOT_ELEMENT,'*');
+
+   FOR i IN 0 .. DBMS_XMLDOM.GETLENGTH(V_CHILD_NODES) - 1
+   LOOP
+
+      V_CURRENT_NODE := DBMS_XMLDOM.ITEM(V_CHILD_NODES,i);
+
+      DBMS_XSLPROCESSOR.VALUEOF(V_CURRENT_NODE,
+        'ID/text()',SER.ID);
+      DBMS_XSLPROCESSOR.VALUEOF(V_CURRENT_NODE,
+        'MINUTES/text()',SER.MINUTES);
+      DBMS_XSLPROCESSOR.VALUEOF(V_CURRENT_NODE,
+        'SMS/text()',SER.SMS);
+      DBMS_XSLPROCESSOR.VALUEOF(V_CURRENT_NODE,
+        'MMS/text()',SER.MMS);
+        DBMS_XSLPROCESSOR.VALUEOF(V_CURRENT_NODE,
+        'MEGABYTES/text()',SER.MEGABYTES);
+BEGIN
+DBMS_OUTPUT.PUT_LINE('ID: '||SER.ID);
+DBMS_OUTPUT.PUT_LINE('MINUTES: '||SER.MINUTES);
+DBMS_OUTPUT.PUT_LINE('SMS: '||SER.SMS);
+DBMS_OUTPUT.PUT_LINE('MMS: '||SER.MMS);
+DBMS_OUTPUT.PUT_LINE('MEGABYTES: '||SER.MEGABYTES);
+DBMS_OUTPUT.PUT_LINE('');
+END;
+
+   END LOOP;
+
+  DBMS_LOB.FREETEMPORARY(L_CLOB);
+  DBMS_XMLPARSER.FREEPARSER(P);
+  DBMS_XMLDOM.FREEDOCUMENT(V_DOC);
+  COMMIT;
+EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_LOB.FREETEMPORARY(L_CLOB);
+  DBMS_XMLPARSER.FREEPARSER(P);
+  DBMS_XMLDOM.FREEDOCUMENT(V_DOC);
+  RAISE_APPLICATION_ERROR(-20101, 'IMPORT XML ERROR'|| SQLERRM);
+END IMPORT_SERVICES_FROM_XML;
+
+END XML_PACKAGE;
+
+
+
+begin
+    XML_PACKAGE.EXPORT_SERVICES_TO_XML();
+    XML_PACKAGE.IMPORT_SERVICES_FROM_XML();
+end;
+
+----------------------------------------------------------------------
+create index debInd on Debit(ContractId);
+drop index debInd;
+create or replace procedure testRows
+is
+i number(8):=0;
+begin
+    while i< 100000
+    loop
+        insert into Debit(DebitDate,Amount, ContractId) values (CURRENT_TIMESTAMP, 1, 21);
+        i:= i+1;
+    end loop;
+    commit;
+    exception when others then raise_application_error(-20024,'Вы ни с кем не связаны');
+end testRows;
+begin
+testRows;
+end;
+EXPLAIN PLAN FOR
+SELECT * FROM Debit where ContractId>1;
+SELECT * FROM TABLE (dbms_xplan.display);
+
+delete from Debit where id>1000
+
+drop index pr_ind;
+drop table Table_1;
+
+create table Table_1 (pr int);
+create index pr_ind on Table_1(pr);
+
+SELECT * FROM DEBIT ORDER BY id
+begin
+for i in 0..1000000
+loop
+insert into Table_1 values (i);
+end loop;
+end;

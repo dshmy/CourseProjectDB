@@ -30,7 +30,7 @@ namespace WpfApp2.Client
         public float tr=0;
         public CurrentClient currentClient;
         static PerformanceCounterCategory performanceCounterCategory = new PerformanceCounterCategory("Network Interface");
-        static string instance = performanceCounterCategory.GetInstanceNames()[0]; // 1st NIC !
+        static string instance = performanceCounterCategory.GetInstanceNames()[1];
         PerformanceCounter performanceCounterSent = new PerformanceCounter("Network Interface", "Bytes Sent/sec", instance);
         PerformanceCounter performanceCounterReceived = new PerformanceCounter("Network Interface", "Bytes Received/sec", instance);
 
@@ -550,6 +550,61 @@ namespace WpfApp2.Client
         private void throwCallButton_Click(object sender, RoutedEventArgs e)
         {
             ThrowCall();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "1";
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "2";
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "3";
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "0";
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "4";
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "5";
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "6";
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "+";
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "7";
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "8";
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            interlocNumText.Text += "9";
         }
     }
 }

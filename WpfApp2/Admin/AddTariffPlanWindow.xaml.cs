@@ -79,7 +79,7 @@ namespace WpfApp2.Admin
                             ParameterName = "in_megabytes",
                             Direction = ParameterDirection.Input,
                             OracleDbType = OracleDbType.NVarchar2,
-                            Value = minutesText.Text
+                            Value = megabytesText.Text
                         };
                         if (minutesText.Text == String.Empty && unlimMinutesCheck.IsChecked.Value == false)
                             minutes.Value = null;

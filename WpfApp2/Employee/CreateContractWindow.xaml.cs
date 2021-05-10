@@ -173,5 +173,12 @@ namespace WpfApp2.Employee
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
     }
 }

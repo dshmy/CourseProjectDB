@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Регистрация" Height="530" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background >
+            <ImageBrush ImageSource="Images\12.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="250"></ColumnDefinition>
@@ -18,17 +21,83 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
+        <Rectangle Fill="#FFD8CCC1" HorizontalAlignment="Left" Opacity="0.7" Height="476" Margin="92,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="Номер телефона" />
-            <TextBox x:Name="phoneNumberText" Height="33" VerticalContentAlignment="Center" FontSize="20" ></TextBox>
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="№ Паспорта" />
-            <TextBox x:Name="passportNumberText" VerticalContentAlignment="Center" Height="33" FontSize="18" ></TextBox>
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="Пароль" />
-            <PasswordBox x:Name="passwordText" VerticalContentAlignment="Center" Height="33" FontSize="18" ></PasswordBox>
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="Подтвердите пароль" />
-            <PasswordBox x:Name="passwordCheckText" VerticalContentAlignment="Center" Height="33" FontSize="18" ></PasswordBox>
+            <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Century Gothic" Height="60" Content="Номер телефона" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="phoneNumberText" Height="33" VerticalContentAlignment="Center" FontSize="20" >
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Century Gothic" Height="60" Content="№ Паспорта" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="passportNumberText" VerticalContentAlignment="Center" Height="33" FontSize="18" >
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Century Gothic" Height="60" Content="Пароль" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <PasswordBox x:Name="passwordText" VerticalContentAlignment="Center" Height="33" FontSize="18" >
+                <PasswordBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
+            <Label HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25" Height="60" Content="Подтвердите пароль" Margin="-10,0,-13,0" Width="273" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <PasswordBox x:Name="passwordCheckText" VerticalContentAlignment="Center" Height="33" FontSize="18" >
+                <PasswordBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="1" Content="Зарегистрироваться" HorizontalContentAlignment="Center" FontSize="20" x:Name="registrationButton" Margin="10,0" Click="registrationButton_Click"/>
+        <Button Grid.Column="1" Grid.Row="1" FontFamily="Century Gothic" Foreground="White"  Template="{DynamicResource shabl3}" HorizontalContentAlignment="Center" FontSize="20" x:Name="registrationButton" Margin="10,0" Click="registrationButton_Click"/>
 
     </Grid>
 </Window>

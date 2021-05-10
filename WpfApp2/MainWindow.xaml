@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Авторизация" Height="480" Width="500"
+        Title="Авторизация" Height="510" Width="450"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
-    <Grid>
+    <Grid >
+        <Grid.Background >
+            <ImageBrush ImageSource="Images\12.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -20,15 +23,58 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
+        <Rectangle Fill="#FFD8CCC1" HorizontalAlignment="Left" Opacity="0.7" Height="428" Margin="92,0,0,-34" Stroke="Black" VerticalAlignment="Top" Width="255" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <Label FontSize="25" HorizontalAlignment="Center" Height="70">Авторизация</Label>
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="Логин" />
-            <TextBox x:Name="loginText" Height="33" VerticalContentAlignment="Center" FontSize="20" Width="200"></TextBox>
-            <Label HorizontalAlignment="Center" FontSize="25" Height="60" Content="Пароль" />
-            <PasswordBox x:Name="passwordText" VerticalContentAlignment="Center" Height="33" FontSize="18" Width="200"></PasswordBox>
+
+            <Label FontSize="25" HorizontalAlignment="Center" FontFamily="Century Gothic" Foreground="White" Height="70">Авторизация
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Century Gothic" Height="60" Content="Логин" Margin="60,0,54,0" Width="86" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="loginText" Height="33" VerticalContentAlignment="Center" FontSize="20" Width="200">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Century Gothic" Height="60" Content="Пароль" Margin="52,0,43,0" Width="105" >
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <PasswordBox x:Name="passwordText" VerticalContentAlignment="Center" Height="33" FontSize="18" Width="200">
+                <PasswordBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="1" Content="Войти" HorizontalContentAlignment="Center" FontSize="20" x:Name="loginButton" Margin="10,0" Click="loginButton_Click"  />
-        <Button Grid.Column="1" Grid.Row="3" Content="Регистрация" HorizontalContentAlignment="Center" FontSize="20" x:Name="registrationButton" Margin="10,0" Click="registrationButton_Click"  />
+        <Button Grid.Column="1" Grid.Row="1" FontFamily="Century Gothic" Content="Войти" HorizontalContentAlignment="Center" Foreground="White"  Template="{DynamicResource shabl}" FontSize="20" x:Name="loginButton" Margin="10,0" Click="loginButton_Click"  />
+        <Button Grid.Column="1" Grid.Row="3" FontFamily="Century Gothic" Content="Регистрация" HorizontalContentAlignment="Center" FontSize="20" x:Name="registrationButton" Foreground="White"  Template="{DynamicResource shabl2}" Margin="10,0" Click="registrationButton_Click"  />
 
     </Grid>
 </Window>

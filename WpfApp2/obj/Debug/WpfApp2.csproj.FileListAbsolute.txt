@@ -37,3 +37,5 @@ F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\bin
 F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
 F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
 F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\obj\Debug\WpfApp2_Content.g.cs
+F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\obj\Debug\App.baml
+F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\obj\Debug\Resources\Triggers.baml

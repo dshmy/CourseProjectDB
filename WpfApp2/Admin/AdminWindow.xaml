@@ -5,9 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="250" Width="400">
+        Title="AdminWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen" Activated="Window_Activated" >
     <Grid>
-        <Button x:Name="addEmployee" Height="50" FontSize="20" Click="addEmployee_Click" Margin="0,159,0,10">Добавление сотрудника</Button>
-        <Button x:Name="addTariffPlan" Height="50" FontSize="20" Click="addTariffPlan_Click" Margin="0,10,0,159" >Добавление тарифа</Button>
+
+        <Grid.Background >
+            <ImageBrush ImageSource="F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\Images\14.png"/>
+        </Grid.Background>
+
+        <TabControl HorizontalAlignment="Left" Height="422" Margin="0" VerticalAlignment="Top" Width="792" FontSize="20" FontFamily="Century Gothic">
+            <TabControl.Background>
+                <ImageBrush ImageSource="F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\Images\14.png"/>
+            </TabControl.Background>
+            <TabControl.Effect>
+                <DropShadowEffect
+                 ShadowDepth="4"
+                 Direction="330"
+                 Color="Black"
+                 Opacity="0.5"/>
+            </TabControl.Effect>
+
+            <TabItem Header="Сотрудники" x:Name="Employees" >
+
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF4C4242" Offset="0"/>
+                        <GradientStop Color="#FFC3BDBD" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid >
+                    <Grid.Background >
+                        <ImageBrush ImageSource="F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\Images\14.png"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="116*"/>
+                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="453*"/>
+                        <ColumnDefinition Width="66*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="employees" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="345" VerticalAlignment="Top" Width="788" EnableRowVirtualization="False" IsReadOnly="True" Opacity="0.9" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserResizeColumns="False"
+							   CanUserResizeRows="False" CanUserReorderColumns="False" FontSize="18" Grid.ColumnSpan="5" Margin="-2,0,0,0">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#FF13131D"  />
+                                <Setter Property="Foreground" Value="White"  />
+                            </Style>
+
+                        </DataGrid.Resources>
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC7D4DE" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn FontWeight="Bold"  Binding="{Binding surname}"  Header="Фамилия" Width="*" />
+                            <DataGridTextColumn Binding="{Binding name}" Header="Имя" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding secondname}" Header="Отчество" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding position}" Header="Должность" Width="*"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="addEmployee" Foreground="White"  Template="{DynamicResource shabl4}"  FontSize="20" Click="addEmployee_Click" Margin="4,345,211.5,0" Grid.Column="2" Grid.ColumnSpan="2">Добавление сотрудника</Button>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Тарифы" x:Name="Numbers">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF4C4242" Offset="0"/>
+                        <GradientStop Color="#FFC3BDBD" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="49*"/>
+                        <ColumnDefinition Width="1139*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="tarsDG" HorizontalAlignment="Left"  Height="343" VerticalAlignment="Top" Width="561" EnableRowVirtualization="False" IsReadOnly="True" Opacity="0.9" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserResizeColumns="False"
+							   CanUserResizeRows="False" CanUserReorderColumns="False" FontSize="18" Grid.Column="1" Margin="81,0,0,0">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#FF13131D"  />
+                                <Setter Property="Foreground" Value="White"  />
+                            </Style>
+
+                        </DataGrid.Resources>
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC7D4DE" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn FontWeight="Bold"  Binding="{Binding Name}"  Header="Тариф" Width="*" />
+                            <DataGridTextColumn Binding="{Binding Price}" Header="Цена" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="addTariffPlan" Foreground="White"  Template="{DynamicResource shabl5}"  FontSize="20" Click="addTariffPlan_Click" Margin="248,343,284,0" Grid.Column="1" >Добавление тарифа</Button>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+        <Button x:Name="exit" Foreground="White"  Template="{DynamicResource shabl7}"  FontSize="16" Margin="675,0,15,431" Content="Добавление сотрудника" Click="exit_Click"/>
     </Grid>
 </Window>

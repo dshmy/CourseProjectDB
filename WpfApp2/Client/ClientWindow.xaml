@@ -6,60 +6,241 @@
         xmlns:local="clr-namespace:WpfApp2.Client"
         xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="440" Width="820">
-    <Grid>
+        Title="AdminWindow" Height="440" Width="620" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF2F2C2C">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label x:Name="qqq" FontSize="20" Content="" Width="300" Height="50" HorizontalContentAlignment="Left" Margin="228,349,4,10" Grid.Column="1"/>
-            <StackPanel Grid.Column="0">
-            <Button x:Name="homePage" Height="50" FontSize="20" Click="homePage_Click">Начальная страница</Button>
-            <Button x:Name="changeTariff" Height="50" FontSize="20" Click="changeTariff_Click">Сменить тариф</Button>
-            <Button x:Name="balanceReplenishment" Height="50" FontSize="20" Click="balanceReplenishment_Click">Пополнение баланса</Button>
-            <Button x:Name="moneyTransfer" Height="50" FontSize="20" Click="moneyTransfer_Click">Перевод денег</Button>
-            <Button x:Name="callButt" Height="50" FontSize="20" Click="callButt_Click" >Звонок</Button>
-            <Button x:Name="smsSend" Height="50" FontSize="20" Click="smsSend_Click" >Отправить SMS</Button>
-            <Button x:Name="mmsSend" Height="50" FontSize="20" Click="mmsSend_Click" >Отправить MMS</Button>
-            <Button x:Name="internet" Height="50" Content="Включить передачу данных" FontSize="20" Click="internet_Click_1" ></Button>
+        <StackPanel Grid.Column="0">
+            <Button x:Name="homePage" Height="50" Foreground="White"  Template="{DynamicResource shabl9}" FontSize="17" Click="homePage_Click">Начальная страница</Button>
+            <Button x:Name="changeTariff" Height="50" FontSize="17" Foreground="White"  Template="{DynamicResource shabl10}" Click="changeTariff_Click">Сменить тариф</Button>
+            <Button x:Name="balanceReplenishment" Height="50" FontSize="17" Foreground="White"  Template="{DynamicResource shabl11}" Click="balanceReplenishment_Click">Пополнение баланса</Button>
+            <Button x:Name="moneyTransfer" Height="50" FontSize="17" Foreground="White"  Template="{DynamicResource shabl12}" Click="moneyTransfer_Click">Перевод денег</Button>
+            <Button x:Name="callButt" Height="50" FontSize="17" Foreground="White"  Template="{DynamicResource shabl13}" Click="callButt_Click" >Звонок</Button>
+            <Button x:Name="smsSend" Height="50" Foreground="White"  Template="{DynamicResource shabl14}" FontSize="17" Click="smsSend_Click" >Отправить SMS</Button>
+            <Button x:Name="mmsSend" Height="50" Foreground="White"  Template="{DynamicResource shabl15}" FontSize="17" Click="mmsSend_Click" >Отправить MMS</Button>
+            <Button x:Name="internet" Height="50" Foreground="White" FontFamily="Century Gothic" Content="Включить передачу данных" Background ="#FF2F2C2C"  FontSize="17" Click="internet_Click_1" ></Button>
         </StackPanel>
         <Grid Grid.Column="1">
+
+            <Grid.Background >
+                <ImageBrush ImageSource="F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\Images\17.jpg"/>
+            </Grid.Background>
+            <Rectangle Margin="0,30,0,37" Opacity="0.6" Fill="#FFEAEAEA"/>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,62,10,70"/>
+
             <StackPanel x:Name="personalData" Visibility="Collapsed">
-                <Label x:Name="myPhoneNumber" Height="40" FontSize="20" Content="Номер: +375337333730" Width="250" HorizontalAlignment="Left"/>
-                <Label x:Name="myBalance" Height="40" FontSize="20" Content="Баланс:" Width="250" HorizontalAlignment="Left"/>
-                <Label x:Name="myMins" Height="40" FontSize="20" Content="Минуты:" Width="250" HorizontalAlignment="Left"/>
-                <Label x:Name="mySMS" Height="40" FontSize="20" Content="SMS:" Width="250" HorizontalAlignment="Left"/>
-                <Label x:Name="myMMS" Height="40" FontSize="20" Content="MMS:" Width="250" HorizontalAlignment="Left"/>
-                <Label x:Name="myMegabytes" Height="40" FontSize="20" Content="Мегабайты:" Width="250" HorizontalAlignment="Left"/>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+
+                <Rectangle Height="20"></Rectangle>
+                <Label x:Name="myPhoneNumber" Height="40"  FontFamily="Century Gothic" FontSize="20" Content="Номер: +375337333730" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+
+                <Label x:Name="myBalance" Height="40" FontSize="20" FontFamily="Century Gothic"  Content="Баланс:" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="myMins" Height="40" FontSize="20" FontFamily="Century Gothic"  Content="Минуты: " Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="mySMS" Height="40" FontSize="20" FontFamily="Century Gothic"  Content="SMS:" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="myMMS" Height="40" FontSize="20" FontFamily="Century Gothic"  Content="MMS:" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="myMegabytes" Height="40" FontSize="20" FontFamily="Century Gothic"  Content="Мегабайты:" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
             </StackPanel>
             <StackPanel x:Name="changeTariffSP" Visibility="Collapsed">
-                <Label Height="40" FontSize="20" Content="Выберите тариф" Width="250" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="tariffsText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left"></ComboBox>
                 <Rectangle Height="20"></Rectangle>
-                <Button x:Name="changeTariffButton" Height="40" FontSize="20" Width="200" HorizontalAlignment="Left" Click="changeTariffButton_Click">Сменить</Button>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Label Height="40" FontSize="20" Content="Выберите тариф" Width="250" HorizontalAlignment="Left" FontFamily="Century Gothic" >
+                    <Label.Effect>
+                        <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <ComboBox x:Name="tariffsText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left">
+                    <ComboBox.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"/>
+                    </ComboBox.Effect>
+                </ComboBox>
+                <Rectangle Height="20"></Rectangle>
+                <Button x:Name="changeTariffButton"  Foreground="White"  Template="{DynamicResource shabl8}" FontSize="18" Width="200" HorizontalAlignment="Left" Click="changeTariffButton_Click" Height="46" Content="Сменить"/>
             </StackPanel>
             <StackPanel x:Name="balanceReplenishmentSP" Visibility="Collapsed">
-                <Label Height="40" FontSize="20" Content="Введите сумму" Width="250" HorizontalAlignment="Left"/>
-                <TextBox x:Name="summReplenishText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left"></TextBox>
                 <Rectangle Height="20"></Rectangle>
-                <Button x:Name="replenishButton" Height="40" FontSize="20" Width="200" HorizontalAlignment="Left" Click="replenishButton_Click" >Пополнить</Button>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+
+                <Label Height="40" FontSize="20" FontFamily="Century Gothic"  Content="Введите сумму" Width="250" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <TextBox x:Name="summReplenishText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left">
+                    <TextBox.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Rectangle Height="20"></Rectangle>
+                <Button x:Name="replenishButton" Height="46" FontSize="18" Width="200" Foreground="White"  Template="{DynamicResource shabl16}" HorizontalAlignment="Left" Click="replenishButton_Click" >Пополнить</Button>
             </StackPanel>
             <StackPanel x:Name="moneyTransferSP" Visibility="Collapsed">
-                <Label Height="40" FontSize="20" Content="Введите сумму" Width="250" HorizontalAlignment="Left"/>
-                <TextBox x:Name="summTransferText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left"></TextBox>
-                <Label Height="40" FontSize="20" Content="Введите номер получателя" Width="260" HorizontalAlignment="Left"/>
-                <TextBox x:Name="numTransferText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left"></TextBox>
                 <Rectangle Height="20"></Rectangle>
-                <Button x:Name="transferButton" Height="40" FontSize="20" Width="200" HorizontalAlignment="Left" Click="transferButton_Click" >Перевести</Button>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Rectangle Height="20"></Rectangle>
+                <Label Height="40" FontSize="20" Content="Введите сумму" Width="250" FontFamily="Century Gothic" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <TextBox x:Name="summTransferText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left">
+                    <TextBox.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Label Height="40" FontSize="20" Content="Введите номер получателя" FontFamily="Century Gothic" Width="300" HorizontalAlignment="Left">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <TextBox x:Name="numTransferText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left">
+                    <TextBox.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Rectangle Height="20"></Rectangle>
+                <Button x:Name="transferButton" Height="46" Foreground="White"  Template="{DynamicResource shabl17}"  FontSize="18" Width="200" HorizontalAlignment="Left" Click="transferButton_Click" >Перевести</Button>
             </StackPanel>
-            <StackPanel x:Name="callSP">
-                <Label Height="40" FontSize="20" Content="Введите номер" Width="250" HorizontalAlignment="Left"/>
-                <TextBox x:Name="interlocNumText" FontSize="18" Height="30" Width="300" HorizontalAlignment="Left"></TextBox>
-                <Rectangle Height="20"></Rectangle>
-                <Button x:Name="callButton" Height="40" FontSize="20" Width="200" HorizontalAlignment="Left" Click="callButton_Click"  >Начать звонок</Button>
-                <Rectangle Height="20"></Rectangle>
-                <Button x:Name="throwCallButton" Height="40" FontSize="20" Width="200" HorizontalAlignment="Left" Click="throwCallButton_Click"  >Завершить звонок</Button>
-            </StackPanel>
+            <Grid x:Name="callSP" Visibility="Visible">
+                <Label Height="40" FontSize="20" Content="Введите номер" Width="250" HorizontalAlignment="Left" Margin="0,63,0,306" FontFamily="Century Gothic">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.3"/>
+                    </Label.Effect>
+                </Label>
+                <TextBox x:Name="interlocNumText" FontSize="18" Width="300" HorizontalAlignment="Left" Margin="0,103,0,267">
+                    <TextBox.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Button x:Name="callButton" Template="{DynamicResource shabl29}" Height="40" FontSize="20" Width="40" HorizontalAlignment="Left" Click="callButton_Click" Margin="259,273,0,86"  >
+                  
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
+                </Button>
+                <Button Foreground="White"  Template="{DynamicResource shabl18}" Margin="67,147,210,213" Click="Button_Click" />
+                <Button x:Name="throwCallButton" Template="{DynamicResource shabl30}"  FontSize="20" Width="40" Height="40" HorizontalAlignment="Left" Click="throwCallButton_Click" Margin="7,273,0,86" BorderBrush="{x:Null}"  >
+                 
+                </Button>
+                <Button Foreground="White"  Template="{DynamicResource shabl19}" Margin="130,147,148,213" Click="Button_Click_1" />
+                <Button Foreground="White"  Template="{DynamicResource shabl20}" Margin="193,147,85,213" Click="Button_Click_2" />
+                <Button Foreground="White"  Template="{DynamicResource shabl21}" Margin="67,201,210,159" Click="Button_Click_4" />
+                <Button Foreground="White"  Template="{DynamicResource shabl22}" Margin="130,201,148,159" Click="Button_Click_5" />
+                <Button Foreground="White"  Template="{DynamicResource shabl23}" Margin="193,201,85,159" Click="Button_Click_6" />
+                <Button Foreground="White"  Template="{DynamicResource shabl24}" Margin="67,255,210,105" Click="Button_Click_8" />
+                <Button Foreground="White"  Template="{DynamicResource shabl25}" Margin="129,255,148,105" Click="Button_Click_9" />
+                <Button Foreground="White"  Template="{DynamicResource shabl26}" Margin="193,255,84,105" Click="Button_Click_10" />
+                <Button Foreground="White"  Template="{DynamicResource shabl27}" Margin="8,201,269,159" Click="Button_Click_3" />
+                <Button Foreground="White"  Template="{DynamicResource shabl28}" Margin="254,201,23,159" Click="Button_Click_7" />
+            </Grid>
+            <Label x:Name="qqq" FontSize="20" Content="" Width="300" FontFamily="Century Gothic"  HorizontalContentAlignment="Left" Margin="32,333,0,26">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+
         </Grid>
-        </Grid>
+
+    </Grid>
 </Window>

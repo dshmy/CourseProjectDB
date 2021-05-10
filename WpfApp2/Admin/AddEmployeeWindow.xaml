@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2.Admin"
         mc:Ignorable="d"
-        Title="Добавление сотрудника" Height="350" Width="670">
+        Title="Добавление сотрудника" Height="350" Width="670" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background >
+            <ImageBrush ImageSource="F:\учеба\3 курс 2 сем\КурсовойАБДиП\WpfApp2\WpfApp2\Images\14.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
 
             <RowDefinition Height="220"></RowDefinition>
@@ -19,22 +22,120 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <Label Content="Фамилия" FontSize="20" Height="40"></Label>
-            <TextBox x:Name="surnameText" FontSize="20" Height="30"></TextBox>
-            <Label Content="Имя" FontSize="20" Height="40"/>
-            <TextBox x:Name="nameText" FontSize="20" Height="30"/>
-            <Label Content="Отчество" FontSize="20" Height="40"/>
-            <TextBox x:Name="secondnameText" FontSize="20" Height="30"/>
+        <Rectangle Fill="#FFE2F9F4" HorizontalAlignment="Left" Opacity="0.7" Height="220" Margin="2,0,0,0" Stroke="#FF747272" VerticalAlignment="Top" Width="660" Grid.ColumnSpan="5"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1"  >
+            <Label Content="Фамилия" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="surnameText" FontSize="20" Height="30">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label Content="Имя" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="nameText" FontSize="20" Height="30">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label Content="Отчество" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="secondnameText" FontSize="20" Height="30">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3">
-            <Label Content="Логин" FontSize="20" Height="40"></Label>
-            <TextBox x:Name="loginText" FontSize="20" Height="30"></TextBox>
-            <Label Content="Пароль" FontSize="20" Height="40"></Label>
-            <PasswordBox x:Name="passwordText" FontSize="20" Height="30"></PasswordBox>
-            <Label Content="Должность" FontSize="20" Height="40"></Label>
-            <ComboBox x:Name="positionText" FontSize="18" Height="30"></ComboBox>
+            <Label Content="Логин" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <TextBox x:Name="loginText" FontSize="20" Height="30">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label Content="Пароль" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <PasswordBox x:Name="passwordText" FontSize="20" Height="30">
+                <PasswordBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
+            <Label Content="Должность" FontSize="20" Height="40" FontFamily="Century Gothic">
+                <Label.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.3"/>
+                </Label.Effect>
+            </Label>
+            <ComboBox x:Name="positionText" FontSize="18" Height="30">
+                <ComboBox.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="4"
+                        Direction="330"
+                        Color="Black"
+                        Opacity="0.5"/>
+                </ComboBox.Effect>
+                </ComboBox>
         </StackPanel>
-        <Button Grid.Row="1" Grid.Column="1" Height="40" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Добавить" FontSize="18" Click="Button_Click"></Button>
+        <Button Grid.Row="1" Grid.Column="1" Height="40" FontFamily="Century Gothic" Width="200" Foreground="White"  Template="{DynamicResource shabl6}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Content="Добавить" FontSize="18" Click="Button_Click"></Button>
     </Grid>
 </Window>

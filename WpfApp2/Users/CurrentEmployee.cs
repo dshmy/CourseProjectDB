@@ -16,5 +16,18 @@ namespace WpfApp2.Users
         public string password { get; set; }
         public string position { get; set; }
 
+        public CurrentEmployee()
+        {
+
+        }
+
+        public CurrentEmployee(string surn, string name, string secname, string pos)
+        {
+            this.surname = surn;
+            this.name = name;
+            this.secondname = secname;
+            this.position = pos;
+        }
+
     }
 }
